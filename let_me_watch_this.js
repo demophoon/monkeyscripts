@@ -33,6 +33,16 @@ function by(field){
     }
 }
 
+function match_any_re(regexes, needle) {
+    for (regex in regexes) {
+        re = regexes[regex];
+        if (needle.match(re)) {
+            return true;
+        }
+    }
+    return false;
+}
+
 function get_links_and_play() {
     console.log("We can start parsing this shit.");
 
@@ -54,12 +64,11 @@ function get_links_and_play() {
     });
 
     var allowed = [
-        'gorillavid.in',
-        'gorillavid.com',
+        'gorillavid\..*',
     ];
 
     links = links.filter(function() {
-        return allowed.indexOf(this.site) > -1
+        return match_any_re(allowed, this.site);
     });
     links = links.sort(by("views"));
     if (links.length > 0) {
@@ -68,17 +77,7 @@ function get_links_and_play() {
     window.links = links;
 }
 
-function any_re(regexes, needle) {
-    for (regex in regexes) {
-        re = regexes[regex];
-        if (needle.match(re)) {
-            return true;
-        }
-    }
-    return false;
-}
-
-if (any_re(['/tvshows/tv/'], window.location.pathname)) {
+if (match_any_re(['/tvshows/tv/'], window.location.pathname)) {
     $(document).ready(function() {
 
         if (window.location.pathname.split("&").length <= 1) {
@@ -108,6 +107,6 @@ if (any_re(['/tvshows/tv/'], window.location.pathname)) {
         }
 
     });
-} else if (any_re(['/external.php'], window.location.pathname)) {
+} else if (match_any_re(['/external.php'], window.location.pathname)) {
     document.location.href = document.getElementById('play_bottom').src;
 }
