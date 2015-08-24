@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name         gorillavid auto submit form
 // @namespace    http://github.com/demophoon/monkeyscripts
-// @version      0.1
+// @version      0.2
 // @description  Automatically skip annoying ad popup and auto play source video
 // @author       Britt Gresham
 // @match        http://gorillavid.tld/*
+// @match        http://daclips.tld/*
 // @grant        none
 // ==/UserScript==
 

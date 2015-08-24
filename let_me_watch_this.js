@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Let me watch this auto watcher
 // @namespace    http://github.com/demophoon/monkeyscripts
-// @version      0.1
+// @version      0.2
 // @description  Adds a "Watch now" link to tv links for quick tv watching!
 // @author       Britt Gresham
 // @match        http://www.letmewatchthis.tld/*
@@ -65,6 +65,7 @@ function get_links_and_play() {
 
     var allowed = [
         'gorillavid\..*',
+        'daclips\..*',
     ];
 
     links = links.filter(function() {
